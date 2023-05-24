@@ -11,27 +11,30 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Airplane,{
-        foreignKey:'airplaneId'
+      this.belongsTo(models.Airplane, {
+        foreignKey: 'airplaneId',
+        as: 'airplaneDetail'
       });
-      this.belongsTo(models.Airport,{
-        foreignKey:'departureAirportId'
+      this.belongsTo(models.Airport, {
+        foreignKey: 'departureAirportId',
+        as: 'departureAirport',
       });
-      this.belongsTo(models.Airport,{
-        foreignKey:'arrivalAirportId'
-      })
+      this.belongsTo(models.Airport, {
+        foreignKey: 'arrivalAirportId',
+        as: 'arrivalAirport',
+      });
     }
   }
   Flight.init({
     flightNumber: {
-      type:DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
-    airplaneId:{
+    airplaneId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    departureAirportId:{
+    departureAirportId: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -40,21 +43,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     arrivalTime: {
-      type:DataTypes.DATE,
+      type: DataTypes.DATE,
       allowNull: false
     },
-    departureTime:{
-      type:DataTypes.DATE,
+    departureTime: {
+      type: DataTypes.DATE,
       allowNull: false
     },
     price: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    boardingGate:{
-      type:DataTypes.STRING,
+    boardingGate: {
+      type: DataTypes.STRING,
     },
-    totalSeats:{
+    totalSeats: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
