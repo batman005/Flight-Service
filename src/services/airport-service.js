@@ -55,19 +55,25 @@ async function destroyAirport(id) {
 
 
 
-async function updateAirport(id, data) {
+async function updateAirport(data,id) {
     try {
-        const response = await airplaneRepository.update(id, data);
-        return response;
+        const airport = await airportRepository.update(data,id);
+      
+        return airport;
     } catch (error) {
+       
         if (error.statusCode == StatusCodes.NOT_FOUND) {
-            throw new AppError('The airplane you requested to update is not present', error.statusCode)
+            throw new AppError('The Airport you requested to update is not present',error.statusCode);
         }
-        throw new AppError('Cannot update data of the airplane', StatusCodes.INTERNAL_SERVER_ERROR);
+        if (error.name == 'SequelizeValidationError') {
+            let explanation=[];
+            error.errors.forEach(err => {
+                explanation.push(err.message);
+            });
+            throw new AppError(explanation, StatusCodes.INTERNAL_SERVER_ERROR);
+        }
     }
 }
-
-
 
 module.exports = {
     createAirport,

@@ -7,7 +7,7 @@ const { SuccessResponse, ErrorResponse } = require('../utils/common');
  * POST : /flights 
  * req-body {
  *  flightNumber: 'UK 808',
- *  airplaneId: 'a380',
+ *  airplaneId: 'a380/ 1',
  *  departureAirportId: 12,
  *  arrivalAirportId: 11,
  *  arrivalTime: '11:10:00',

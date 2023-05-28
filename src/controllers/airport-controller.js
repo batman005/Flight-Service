@@ -102,21 +102,32 @@ async function destroyAirport(req, res) {
 }
 
 
+
+/**
+ * PATCH : /airports/:id 
+ * req-body {name: Kalyani Airport,code:KLY,address:KAlyani West BEngal,cityId:3}
+ */
 async function updateAirport(req, res) {
     try {
-        const updatedAirplane = await AirplaneService.updateAirplane(req.params.id, {
-            capacity: req.body.capacity
-        });
-        SuccessResponse.data = updatedAirplane;
+        
+        const airport = await AirportService.updateAirport(req.params.id,
+            {
+                name:req.body.name,
+                code:req.body.code,
+                address:req.body.address,
+                cityId:req.body.cityId,
+            },
+        );
+        SuccessResponse.data = airport;
         return res
-            .status(StatusCodes.OK)
-            .json(SuccessResponse);
-
-    } catch (error) {
+                .status(StatusCodes.OK)
+                .json(SuccessResponse);
+    } catch(error) {
+        
         ErrorResponse.error = error;
         return res
-            .status(error.statusCode)
-            .json(ErrorResponse);
+                .status(error.statusCode)
+                .json(ErrorResponse);
     }
 }
 

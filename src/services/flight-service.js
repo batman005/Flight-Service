@@ -32,7 +32,7 @@ async function getAllFlights(query) {
        [departureAirportId, arrivalAirportId] = query.trips.split("-"); 
        customFilter.departureAirportId = departureAirportId;
        customFilter.arrivalAirportId = arrivalAirportId;
-       // TODO: add a check that they are not same
+       //DONE: added a check that they are not same in middleware
     }
     if(query.price) {
         [minPrice, maxPrice] = query.price.split("-");
