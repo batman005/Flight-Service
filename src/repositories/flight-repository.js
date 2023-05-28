@@ -63,3 +63,8 @@ class FlightRepository extends CrudRepository {
 }
 
 module.exports = FlightRepository;
+
+
+//Notes:-
+//+dec we are using uniary operator
+// we can use Number(dec) also
