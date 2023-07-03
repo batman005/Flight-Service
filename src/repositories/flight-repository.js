@@ -60,7 +60,7 @@ class FlightRepository extends CrudRepository {
                 await flight.increment('totalSeats', {by: seats}, {transaction: transaction});
             }
             await transaction.commit();
-            return flight;
+            return flight.reload();
         } catch(error) {
             await transaction.rollback();
             throw error;
