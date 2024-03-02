@@ -46,3 +46,25 @@ Lets take a look inside the `src` folder
  ```
  npm run dev
  ```
+ Docker API-Gateway
+
+# build container image
+```
+ docker build -t flights-service .
+ ```
+
+# creating space for node modules
+```
+docker volume create flights-service-node-modules
+```
+# running the container
+```
+docker run -it --init -p 3000:3000 -v "$(pwd)":/developer/nodejs/flights-service -v flights-service-node-modules:/developer/nodejs/flights-service/node_modules flights-service:latest
+```
+
+# running container naming it and connecting with bridge
+```
+docker run -it --init --name flights_service --network microservice-network-sky -p 3000:3000 -v "$(pwd)":/de
+veloper/nodejs/flights-service -v flights-service-node-modules:/developer/n
+odejs/flights-service/node_modules flights-service:latest
+```
